@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Money {
 
@@ -13,8 +13,14 @@ public class Money {
         assertEquals(15, product.amount);
     }
 
+    @Test
+    public void testEquality(){
+        assertTrue(new Dollar(5).equals(new Dollar(5)));
+        assertFalse(new Dollar(5).equals(new Dollar(6)));
+    }
+
     class Dollar {
-        int amount;
+        private int amount;
 
         Dollar(int amount) {
             this.amount = amount;
@@ -22,6 +28,12 @@ public class Money {
 
         Dollar times(int multiplier) {
             return new Dollar(amount * multiplier);
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            Dollar dollar = (Dollar) obj;
+            return amount == dollar.amount;
         }
     }
 }
