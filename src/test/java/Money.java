@@ -7,10 +7,8 @@ public class Money {
     @Test
     public void testMultiplication() {
         Dollar five = new Dollar(5);
-        Dollar product = five.times(2);
-        assertEquals(10, product.amount);
-        product = five.times(3);
-        assertEquals(15, product.amount);
+        assertEquals(new Dollar(10), five.times(2));
+        assertEquals(new Dollar(15), five.times(3));
     }
 
     @Test
@@ -20,6 +18,7 @@ public class Money {
     }
 
     class Dollar {
+        // 3장에서의 동시성에 대한 코드 추가에서가 아닌, 이번 Dollar 간 비교로 테스트가 바뀐 후 변경했어야 한다.
         private int amount;
 
         Dollar(int amount) {
